@@ -17,7 +17,7 @@ def load_data():
     df[:] (pandas.DataFrame): A copy of the dataframe containing the data.
     """
     df = pd.read_excel(r'C:\Users\munee\Desktop\SSK assignment\Assignment 3\Assignment 3 Clustering and fitting - poster\API_19_DS2_en_excel_v2_5360124.xls')
-    return df, df[:]
+    return df, df[:].transpose()
 
 def get_encoding(df):
     """
@@ -438,6 +438,7 @@ def main_app():
 
     # Load the data and preprocess it
     df, dfx = load_data()   # Load the dataset
+    dfx = dfx.transpose()   # transpose the data
     df = get_encoding(df)   # One-hot encode categorical variables
     df = get_scaling(df)    # Scale the numerical variables
     sse = get_best_cluster_no(df)  # Determine the optimal number of clusters using the elbow method
